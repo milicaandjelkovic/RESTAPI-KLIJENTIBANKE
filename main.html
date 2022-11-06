@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Klijent banke</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Header -->
+      <div class="row">
+        <div class="col-md-8 col-sm-12 m-auto bg-light p-5">
+          <div class="row">
+            <div class="col-12">
+              <h2>Dostavljanje podataka iz MongoDB u Node.js server</h2>
+            </div>
+            <div class="col-12">
+              <h6>Created by Milica Anđelković</h6>
+            </div>
+            <hr id="info_hr" class="my-4" />
+            <h4>Informacije o klijentu</h4>
+          </div>
+        </div>
+      </div>
+      <!-- /Header -->
+      <!-- Form -->
+      <hr class="my-2" />
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-5">
+          <div class="row mb-3">
+            <label for="id_klijenta" class="col-sm-2 col-form-label">ID</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="id_klijenta" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="ime" class="col-sm-2 col-form-label">Ime</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="ime" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="prezime" class="col-sm-2 col-form-label">Prezime</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="prezime" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="jmbg" class="col-sm-2 col-form-label">JMBG</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="jmbg" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="adresa" class="col-sm-2 col-form-label">Adresa</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="adresa" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="broj_telefona" class="col-sm-2 col-form-label"
+              >Broj telefona</label
+            >
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="broj_telefona" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="e_mail" class="col-sm-2 col-form-label">E-mail</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="e_mail" value=""/>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="row mb-3">
+            <label for="broj_racuna" class="col-sm-2 col-form-label"
+              >Broj računa</label
+            >
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="broj_racuna" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="zaposlen" class="col-sm-2 col-form-label"
+              >Zaposlen</label
+            >
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="zaposlen" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="mobilna_app" class="col-sm-2 col-form-label"
+              >Mobilna aplikacija</label
+            >
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="mobilna_app" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="sms_usluga" class="col-sm-2 col-form-label">SMS</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="sms_usluga" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="kategorija" class="col-sm-2 col-form-label"
+              >Kategorija</label
+            >
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="kategorija" value=""/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="paket_racun" class="col-sm-2 col-form-label"
+              >Paket račun</label
+            >
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="paket_racun" value=""/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <!-- /Form -->
+      <!-- Buttons -->
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2">
+          <button type="button" class="btn btn-primary" onclick="post_create()">
+            Ubaci klijenta
+          </button>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-secondary" onclick="get_all()">
+            Prikaži klijente
+          </button>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-success" onclick="get_by_id()">
+            Prikaži klijenta
+          </button>
+        </div>
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-warning"
+            onclick="update_client()"
+          >
+            Ažuriraj klijenta
+          </button>
+        </div>
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="delete_client()"
+          >
+            Obriši klijenta
+          </button>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- /Buttons -->
+      <!-- Table -->
+      <table id="client_table" class="table table-stripped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Prezime</th>
+            <th scope="col">JMBG</th>
+            <th scope="col">Adresa</th>
+            <th scope="col">Broj telefona</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Broj računa</th>
+            <th scope="col">Zaposlen</th>
+            <th scope="col">Mobilna aplikacija</th>
+            <th scope="col">SMS usluga</th>
+            <th scope="col">Kategorija</th>
+            <th scope="col">Paket račun</th>
+          </tr>
+        </thead>
+        <tbody id="tblper"></tbody>
+      </table>
+      <!-- /Table -->
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./functions.js"></script>
+  </body>
+</html>
